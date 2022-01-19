@@ -22,6 +22,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * @author Ebin
  *
@@ -62,10 +65,12 @@ public class Candidate implements Serializable
 	@JoinColumn(name = "location_id")
 	private Location location;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
 	@JoinTable(name = "candidate_skills", joinColumns = @JoinColumn(name = "candidate_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> candidateSkills;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
 	@JoinTable(name = "candidate_preferred_locations", joinColumns = @JoinColumn(name = "candidate_id"), inverseJoinColumns = @JoinColumn(name = "location_id", referencedColumnName = "id"))
 	private List<Location> preferredLocations;

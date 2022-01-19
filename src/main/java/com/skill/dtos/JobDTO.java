@@ -6,6 +6,8 @@ package com.skill.dtos;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author Ebin
  *
@@ -16,8 +18,10 @@ public class JobDTO implements Serializable
 
 	private Long jobId;
 
+	@NotBlank(message = "Job name is mandatory field")
 	private String name;
 
+	@NotBlank(message = "Job description is a mandatory field")
 	private String description;
 
 	private Character status;

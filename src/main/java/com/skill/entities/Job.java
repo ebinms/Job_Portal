@@ -20,6 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * @author Ebin
  *
@@ -57,10 +60,12 @@ public class Job implements Serializable
 	@JoinColumn(name = "company_id")
 	private Company company;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
 	@JoinTable(name = "job_skills", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> jobSkills;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
 	@JoinTable(name = "job_locations", joinColumns = @JoinColumn(name = "job_id"), inverseJoinColumns = @JoinColumn(name = "location_id", referencedColumnName = "id"))
 	private List<Location> jobLocations;

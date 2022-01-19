@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,8 @@ public class MasterServicesImpl implements MasterServices
 	@Override
 	public Skill findOneSkillById(Long id)
 	{
-		return skillRepo.getById(id);
+		Optional<Skill> skill = skillRepo.findById(id);
+		return skill.isPresent() ? skill.get() : null;
 	}
 
 	/**
@@ -121,7 +123,8 @@ public class MasterServicesImpl implements MasterServices
 	@Override
 	public Location findLocation(Long locationId)
 	{
-		return locationRepo.getById(locationId);
+		Optional<Location> location = locationRepo.findById(locationId);
+		return location.isPresent() ? location.get() : null;
 	}
 
 	/**
@@ -153,7 +156,8 @@ public class MasterServicesImpl implements MasterServices
 	@Override
 	public Company findCompany(Long companyId)
 	{
-		return companyRepo.getById(companyId);
+		Optional<Company> company = companyRepo.findById(companyId);
+		return company.isPresent() ? company.get() : null;
 	}
 
 }
