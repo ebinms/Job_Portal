@@ -16,11 +16,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skill.dtos.JobDTO;
-import com.skill.entities.Candidate;
+import com.skill.entities.User;
 import com.skill.entities.Job;
 import com.skill.entities.Skill;
 import com.skill.repositories.JobRepository;
-import com.skill.services.CandidateServices;
+import com.skill.services.UserServices;
 import com.skill.services.JobServices;
 import com.skill.services.MasterServices;
 
@@ -39,7 +39,7 @@ public class JobServicesImpl implements JobServices
 
 	/** The candidate services. */
 	@Autowired
-	private CandidateServices candidateServices;
+	private UserServices candidateServices;
 
 	/** The master services. */
 	@Autowired
@@ -130,7 +130,7 @@ public class JobServicesImpl implements JobServices
 	@Override
 	public List<Job> findCandidatePreferredJobs(final Long candidateId, final Long locationId)
 	{
-		final Candidate candidate = candidateServices.findOne(candidateId);
+		final User candidate = candidateServices.findOne(candidateId);
 		final List<Skill> candidateSkills = candidate.getCandidateSkills();
 		if (Objects.nonNull(candidateSkills))
 		{

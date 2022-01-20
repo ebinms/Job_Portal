@@ -30,15 +30,15 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
  *
  */
 @Entity
-@Table(name = "candidates")
-public class Candidate implements Serializable
+@Table(name = "users")
+public class User implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "candidate_id")
-	private Long candidateId;
+	@Column(name = "user_id")
+	private Long userId;
 
 	@NotBlank(message = "Candidate name is a mandatory field")
 	@Column(name = "name")
@@ -51,6 +51,9 @@ public class Candidate implements Serializable
 	@Email(message = "Invalid Email")
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "user_type")
+	private String userType;
 
 	@Column(name = "status")
 	private Character status;
@@ -67,22 +70,22 @@ public class Candidate implements Serializable
 
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
-	@JoinTable(name = "candidate_skills", joinColumns = @JoinColumn(name = "candidate_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
+	@JoinTable(name = "user_skills", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> candidateSkills;
 
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany
-	@JoinTable(name = "candidate_preferred_locations", joinColumns = @JoinColumn(name = "candidate_id"), inverseJoinColumns = @JoinColumn(name = "location_id", referencedColumnName = "id"))
+	@JoinTable(name = "user_preferred_locations", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "location_id", referencedColumnName = "id"))
 	private List<Location> preferredLocations;
 
-	public Long getCandidateId()
+	public Long getUserId()
 	{
-		return candidateId;
+		return userId;
 	}
 
-	public void setCandidateId(Long candidateId)
+	public void setUserId(Long userId)
 	{
-		this.candidateId = candidateId;
+		this.userId = userId;
 	}
 
 	public Long getMobile()
@@ -113,6 +116,16 @@ public class Candidate implements Serializable
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+	
+	public String getUserType()
+	{
+		return userType;
+	}
+
+	public void setUserType(String userType)
+	{
+		this.userType = userType;
 	}
 
 	public Character getStatus()
@@ -180,7 +193,7 @@ public class Candidate implements Serializable
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((candidateId == null) ? 0 : candidateId.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -194,12 +207,12 @@ public class Candidate implements Serializable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Candidate other = (Candidate) obj;
-		if (candidateId == null)
+		User other = (User) obj;
+		if (userId == null)
 		{
-			if (other.candidateId != null)
+			if (other.userId != null)
 				return false;
-		} else if (!candidateId.equals(other.candidateId))
+		} else if (!userId.equals(other.userId))
 			return false;
 		if (name == null)
 		{
@@ -209,4 +222,5 @@ public class Candidate implements Serializable
 			return false;
 		return true;
 	}
+	
 }

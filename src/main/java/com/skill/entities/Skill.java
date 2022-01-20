@@ -47,7 +47,7 @@ public class Skill implements Serializable
 	private LocalDateTime modDate;
 
 	@ManyToMany(mappedBy = "candidateSkills")
-	private List<Candidate> candidates;
+	private List<User> candidates;
 	
 	@ManyToMany(mappedBy = "jobSkills")
 	private List<Job> jobs ;
@@ -102,12 +102,12 @@ public class Skill implements Serializable
 		this.modDate = modDate;
 	}
 
-	public List<Candidate> getCandidates()
+	public List<User> getCandidates()
 	{
 		return candidates;
 	}
 
-	public void setCandidates(List<Candidate> candidates)
+	public void setCandidates(List<User> candidates)
 	{
 		this.candidates = candidates;
 	}

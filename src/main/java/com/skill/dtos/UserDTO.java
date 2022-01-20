@@ -10,17 +10,19 @@ import java.util.List;
  * @author Ebin
  *
  */
-public class CandidateDTO implements Serializable
+public class UserDTO implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
-	private Long candidateId;
+	private Long userId;
 
 	private String name;
 
 	private Long mobile;
 
 	private String email;
+	
+	private String userType;
 
 	private Character status;
 
@@ -30,14 +32,14 @@ public class CandidateDTO implements Serializable
 
 	private List<Long> preferredLocations;
 
-	public Long getCandidateId()
+	public Long getUserId()
 	{
-		return candidateId;
+		return userId;
 	}
 
-	public void setCandidateId(Long candidateId)
+	public void setUserId(Long candidateId)
 	{
-		this.candidateId = candidateId;
+		this.userId = candidateId;
 	}
 
 	public String getName()
@@ -110,12 +112,23 @@ public class CandidateDTO implements Serializable
 		this.preferredLocations = preferredLocations;
 	}
 
+	public String getUserType()
+	{
+		return userType;
+	}
+
+	public void setUserType(String userType)
+	{
+		this.userType = userType;
+	}
+
+
 	@Override
 	public int hashCode()
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((candidateId == null) ? 0 : candidateId.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((mobile == null) ? 0 : mobile.hashCode());
 		return result;
@@ -130,12 +143,12 @@ public class CandidateDTO implements Serializable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CandidateDTO other = (CandidateDTO) obj;
-		if (candidateId == null)
+		UserDTO other = (UserDTO) obj;
+		if (userId == null)
 		{
-			if (other.candidateId != null)
+			if (other.userId != null)
 				return false;
-		} else if (!candidateId.equals(other.candidateId))
+		} else if (!userId.equals(other.userId))
 			return false;
 		if (email == null)
 		{

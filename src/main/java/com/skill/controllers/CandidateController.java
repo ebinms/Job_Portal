@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.ApiResponse;
-import com.skill.dtos.CandidateDTO;
-import com.skill.services.CandidateServices;
+import com.skill.dtos.UserDTO;
+import com.skill.services.UserServices;
 
 /**
  * @author Ebin
@@ -26,10 +26,10 @@ public class CandidateController
 {
 	private ApiResponse apiResponse;
 	
-	private CandidateServices candidateServices;
+	private UserServices candidateServices;
 	
 	@PostMapping(value = "/save")
-	public ResponseEntity<ApiResponse> saveCandidate(@Valid @RequestBody CandidateDTO candidate)
+	public ResponseEntity<ApiResponse> saveCandidate(@Valid @RequestBody UserDTO candidate)
 	{
 		apiResponse = new ApiResponse(1, "Success", candidateServices.saveNew(candidate));
 		return new ResponseEntity<>(apiResponse, HttpStatus.OK);

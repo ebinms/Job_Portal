@@ -6,14 +6,14 @@ package com.skill.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.skill.entities.Candidate;
+import com.skill.entities.User;
 
 /**
  * @author Ebin
  *
  */
 @Repository
-public interface CandidateRepository extends JpaRepository<Candidate, Long>
+public interface UserRepository extends JpaRepository<User, Long>
 {
 	
 }
